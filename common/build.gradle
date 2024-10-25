@@ -1,0 +1,17 @@
+// common/build.gradle
+plugins {
+    id 'java-library'  // 使用 java-library 插件而不是 spring-boot 插件
+}
+
+
+dependencies {
+    // 只包含 common 模块自身需要的依赖
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.2'
+
+}
+
+tasks.withType(org.springframework.boot.gradle.tasks.bundling.BootJar) {
+    enabled = false // 禁用 bootJar 任务
+}

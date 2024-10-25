@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: 52.88.35.70:9092
+    consumer:
+      group-id: "kafka-service-group"
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      concurrency: 3

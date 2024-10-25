@@ -1,0 +1,12 @@
+// ad-click-event-service/build.gradle
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    // 引入 'common' 模块中的代码
+    implementation project(':common')
+    implementation project(':kafka-utils')
+    implementation 'org.springframework.kafka:spring-kafka:3.2.4'
+    // 其他特定于子模块的依赖可以在这里添加
+}

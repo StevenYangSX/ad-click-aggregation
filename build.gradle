@@ -1,0 +1,49 @@
+// 根项目的 build.gradle
+plugins {
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+allprojects {
+    group = 'pro.stevendev'
+    version = '1.0.0'
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:3.3.4'
+        }
+    }
+
+    dependencies {
+        // 公共依赖
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        // Lombok 依赖，所有子模块都可以使用
+        compileOnly 'org.projectlombok:lombok:1.18.30'
+        annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.4'
+
+    }
+    // 配置 Lombok 注解处理器路径
+    tasks.withType(JavaCompile) {
+        options.annotationProcessorPath = configurations.annotationProcessor
+    }
+
+    // 设置 Java 版本
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}

@@ -1,0 +1,14 @@
+// ad-click-event-service/build.gradle
+plugins {
+	id 'org.springframework.boot' version '3.3.4'
+}
+
+dependencies {
+	// 引入 'common' 模块中的代码
+	implementation project(':common')
+
+	// 子模块特有的依赖，比如数据库驱动
+	runtimeOnly 'org.postgresql:postgresql'  // 如果你使用 PostgreSQL 作为数据库
+
+	// 其他特定于子模块的依赖可以在这里添加
+}
